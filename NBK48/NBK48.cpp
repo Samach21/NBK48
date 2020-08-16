@@ -2,11 +2,14 @@
 
 #define MAX_NSIZE (100000) 
 
+int p[MAX_NSIZE], q[MAX_NSIZE];
+int N_values, Q_values, i;
+int Sum_p, Sum_q;
+
+int process();
+
 int main()
 {
-    int p[MAX_NSIZE], q[MAX_NSIZE];
-    int N_values,Q_values, i;
-    int Sum_p, Sum_q;
     if (scanf_s("%d", &N_values) != 1) {
         fprintf(stderr, "ERROR\n");
         return 1;
@@ -47,6 +50,13 @@ int main()
         }
     }
 
+    process();
+
+    return 0;
+}
+
+int process()
+{
     for (i = 1; i <= Q_values; i++) {
         Sum_p = 0;
         for (int j = 1; j <= N_values; j++)
@@ -60,6 +70,5 @@ int main()
             }
         }
     }
-
     return 0;
 }
