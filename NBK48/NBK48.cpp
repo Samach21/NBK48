@@ -1,6 +1,6 @@
 #include <stdio.h> 
 
-#define MAX_NSIZE (100000) 
+#define MAX_NSIZE 100000
 
 int p[MAX_NSIZE], q[MAX_NSIZE];
 int N_values, Q_values, i;
@@ -33,7 +33,7 @@ int main()
             fprintf(stderr, "ERROR \n");
             return 1;
         }
-        else if (p[i] <= -10000 || p[i] >= 10000) {
+        else if (p[i] < -10000 || p[i] > 10000) {
             fprintf(stderr, "ERROR \n-10000 <= p%d <= 10000\n", i);
             return 1;
         }
@@ -44,7 +44,7 @@ int main()
             fprintf(stderr, "ERROR \n");
             return 1;
         }
-        else if (q[i] <= 0 || q[i] >= 1000000000) {
+        else if (q[i] < 0 || q[i] > 1000000000) {
             fprintf(stderr, "ERROR \n0 <= q%d <= 1000000000\n", i);
             return 1;
         }
@@ -57,16 +57,20 @@ int main()
 
 int process()
 {
+    long long int k[MAX_NSIZE];
     for (i = 1; i <= Q_values; i++) {
         Sum_p = 0;
         for (int j = 1; j <= N_values; j++)
         {
             Sum_p += p[j];
-            if (Sum_p >= q[i])
+            k[j] = Sum_p;
+        }
+        for (int m = N_values; m >= 1; m--)
+        {
+            if (k[m] <= q[i])
             {
-                printf("\n%d", j);
-                Sum_p -= p[j];
-                j = N_values + 1;
+                printf("\n%d", m );
+                m = 0;
             }
         }
     }
